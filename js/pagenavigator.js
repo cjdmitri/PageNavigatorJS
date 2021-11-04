@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', startup());
+document.addEventListener('DOMContentLoaded', startup());
 
 
 
@@ -23,12 +23,12 @@ function startup() {
         if (item.id !== "") {
             let hNumber = parseInt(item.tagName.slice(1));
             if (i == 0) {
-                content += '<li><a href="#' + item.id + '">' + item.innerText + '</a></li>';
+                content += appendItem(item.id, item.innerHTML);
             }
             else {
                 //Если заголовок равен прошлому заголовку, то создаём элемент списка
                 if (lastNumberTag === hNumber) {
-                    content += '<li><a href="#' + item.id + '">' + item.innerText + '</a></li>';
+                    content += appendItem(item.id, item.innerHTML);
                 }
                 //Если номер тега больше прошлого, то создаём вложеный список
                 else if (hNumber > lastNumberTag) {
@@ -36,15 +36,14 @@ function startup() {
                     for(let i=0;i<nesting; i++){
                         content += '<li><ul>';
                     }
-                    content += '<li><a href="#' + item.id + '">' + item.innerText + '</a></li>';
+                    content += appendItem(item.id, item.innerHTML);
 
                 }
                 else if (hNumber < lastNumberTag) {
-                    console.log(lastNumberTag + '\t' + hNumber);
                     for (let i = 0; i < lastNumberTag - hNumber; i++) {
                         content += '</ul></li>';
                     }
-                    content += '<li><a href="#' + item.id + '">' + item.innerText + '</a></li>';
+                    content += appendItem(item.id, item.innerHTML);
                 }
             }
             lastNumberTag = hNumber;
@@ -57,4 +56,9 @@ function startup() {
     content += '</ul>';
     pagenavigator.innerHTML = content;
     console.log(content);
+}
+
+
+function appendItem(id, title){
+    return  `<li><a href="#${id}">${title}</a></li>`;
 }
