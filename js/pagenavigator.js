@@ -15,6 +15,7 @@ function startup() {
         return;
     }
 
+    //необходима для определения вложенности списка
     let lastNumberTag;
     let content = '<ul>';
     
