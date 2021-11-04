@@ -1,0 +1,17 @@
+#pagenavigator{
+    border:1px solid #ccc;
+    border-radius: 15px;
+    background-color: rgb(247, 247, 247);
+}
+
+#pagenavigator  ul{
+    list-style: none;
+}
+
+#pagenavigator  a{
+    text-decoration: none;
+}
+
+#pagenavigator  a:hover{
+    text-decoration: underline;
+}
