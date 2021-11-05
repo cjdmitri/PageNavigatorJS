@@ -22,6 +22,7 @@ function startup() {
     //если нет заголовков, то выходим
     if(headersTags.length===0){
         console.info('No headers');
+        pagenavigator.style.display = 'hidden';
         return;
     }
 
@@ -44,7 +45,7 @@ function startup() {
     headersTags.forEach(function (item, i, headersTags) {
         if (item.id !== "") {
             let hNumber = parseInt(item.tagName.slice(1));
-            if (i == 0) {
+            if (i == 1) {
                 content += appendItem(item.id, item.innerHTML);
             }
             else {
@@ -55,14 +56,14 @@ function startup() {
                 //Если номер тега больше прошлого, то создаём вложеный список
                 else if (hNumber > lastNumberTag) {
                     let nesting = hNumber-lastNumberTag;
-                    for(let i=0;i<nesting; i++){
+                    for(let r=0;r<nesting; r++){
                         content += '<li><ul>';
                     }
                     content += appendItem(item.id, item.innerHTML);
 
                 }
                 else if (hNumber < lastNumberTag) {
-                    for (let i = 0; i < lastNumberTag - hNumber; i++) {
+                    for (let r = 0; r < lastNumberTag - hNumber; r++) {
                         content += '</ul></li>';
                     }
                     content += appendItem(item.id, item.innerHTML);
