@@ -76,7 +76,7 @@ function startup() {
     });
     //Append root list on page
     content += '</ul>';
-    pagenavigator.innerHTML = content;
+    pagenavigator.innerHTML += content;
     console.log(content);
 }
 
